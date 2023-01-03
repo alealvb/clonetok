@@ -7,19 +7,24 @@ import {
   Param,
   Delete,
   UsePipes,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto, UpdateUserDto, ResponseUser } from './user.dto';
 import { ZodValidationPipe } from '@anatine/zod-nestjs';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Public } from 'src/auth/public.decoreator';
 
 @Controller('users')
 @ApiTags('users')
+@ApiBearerAuth()
 @UsePipes(ZodValidationPipe)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @Public()
   @ApiCreatedResponse({
     type: ResponseUser,
   })
@@ -33,6 +38,7 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }

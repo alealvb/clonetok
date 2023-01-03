@@ -9,6 +9,7 @@ async function bootstrap() {
     .setTitle('CloneTok')
     .setDescription('The CloneTok API')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   patchNestjsSwagger();
   const document = SwaggerModule.createDocument(app, docsConfig);
