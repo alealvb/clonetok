@@ -23,15 +23,6 @@ import { Public } from 'src/auth/public.decoreator';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  @Public()
-  @ApiCreatedResponse({
-    type: ResponseUser,
-  })
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
-
   @Get()
   findAll() {
     return this.usersService.findAll();
