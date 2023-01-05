@@ -10,7 +10,7 @@ export class EncoderService {
    * @param {string} userPassword - The password that was stored in the database.
    * @returns A promise that resolves to a boolean.
    * */
-  checkPassword(password: string, userPassword: string): Promise<boolean> {
+  check(password: string, userPassword: string): Promise<boolean> {
     return compare(password, userPassword);
   }
 
@@ -20,7 +20,7 @@ export class EncoderService {
    * @param {string} password - The password to be hashed.
    * @returns The password is being hashed and salted.
    * */
-  async encodePassword(password: string): Promise<string> {
+  async encode(password: string): Promise<string> {
     const salt = await genSalt();
     return hash(password, salt);
   }
