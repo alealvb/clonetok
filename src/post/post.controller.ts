@@ -13,8 +13,10 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { User } from 'src/auth/user.decorator';
 import { ZodValidationPipe } from '@anatine/zod-nestjs';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('post')
+@ApiTags('post')
 @UsePipes(ZodValidationPipe)
 export class PostController {
   constructor(private readonly postService: PostService) {}
