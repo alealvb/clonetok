@@ -1,7 +1,6 @@
 import {
   Controller,
   Get,
-  Post,
   Body,
   Patch,
   Param,
@@ -10,15 +9,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
-import { CreateUserDto, UpdateUserDto, ResponseUser } from './user.dto';
+import { ApiTags } from '@nestjs/swagger';
 import { ZodValidationPipe } from '@anatine/zod-nestjs';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Public } from 'src/auth/public.decoreator';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Controller('users')
 @ApiTags('users')
-@ApiBearerAuth()
 @UsePipes(ZodValidationPipe)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
