@@ -15,6 +15,7 @@ async function bootstrap() {
     .build();
   patchNestjsSwagger();
   const document = SwaggerModule.createDocument(app, docsConfig);
+
   SwaggerModule.setup('docs', app, document);
 
   await app.listen(3000);
