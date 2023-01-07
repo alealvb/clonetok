@@ -37,14 +37,20 @@ export class AuthService {
     const payload = { email: user.email, sub: user.id };
     return {
       access_token: this.jwtService.sign(payload),
-      hola: 'si',
     };
   }
 
   async register(userData: RegisterWithouPasswordDto, password: string) {
     const password_hash = await this.encoder.encode(password);
 
-    const user = await this.usersService.create({ ...userData, password_hash });
+    const user = await this.usersService
+      .create({ ...userData, password_hash })
+      .catch((e) => {
+        if (e.code === 'P2002' && e.meta?.target?.includes('email')) {
+          throw new BadRequestException('Email already exists');
+        }
+        throw e;
+      });
 
     const payload = { email: user.email, sub: user.id };
 
