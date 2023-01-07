@@ -15,15 +15,13 @@ const UserSchema = extendApi(UserModel, {
   description: 'A user',
 });
 
-const createUser = UserSchema.omit({
+export const createUserSchema = UserSchema.omit({
   id: true,
   password_hash: true,
   createdAt: true,
   updatedAt: true,
 });
 
-export class CreateUserDto extends createZodDto(createUser) {}
-
-export class UpdateUserDto extends createZodDto(createUser.partial()) {}
+export class CreateUserDto extends createZodDto(createUserSchema) {}
 
 export class ResponseUser extends createZodDto(UserModel) {}
