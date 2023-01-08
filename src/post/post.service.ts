@@ -17,7 +17,7 @@ export class PostService {
     const uuid = crypto.randomUUID();
 
     const { contentType, extension, ...postPayload } = createPostDto;
-    const key = `post/${uuid}.${extension}`;
+    const key = `assets01/${uuid}.${extension}`;
 
     const post = await this.prisma.post.create({
       data: {
@@ -27,7 +27,7 @@ export class PostService {
       },
     });
 
-    const uploadUrl = await this.s3.generateUploadVideoUrl(key, contentType);
+    const uploadUrl = await this.s3.generateUploadUrl({ key, contentType });
 
     return { post, uploadUrl };
   }
