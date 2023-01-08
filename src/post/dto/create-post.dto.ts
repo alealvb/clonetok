@@ -28,7 +28,7 @@ const createPostSchema = extendApi(
       extension: z.string(),
     }),
   {
-    description: 'Create a post',
+    description: 'Create a post.',
   },
 );
 
