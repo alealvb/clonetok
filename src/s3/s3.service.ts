@@ -19,7 +19,7 @@ export class S3Service {
     const params = {
       Bucket: this.config.get<string>('AWS_BUCKET_NAME'),
       Key: key,
-      Expires: 60 * 5,
+      Expires: 60 * 2,
       ContentType: contentType,
     };
     return this.s3.getSignedUrlPromise('putObject', params);
