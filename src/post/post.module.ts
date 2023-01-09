@@ -8,5 +8,6 @@ import { S3Module } from 'src/s3/s3.module';
   imports: [PrismaModule, S3Module],
   controllers: [PostController],
   providers: [PostService],
+  exports: [PostService],
 })
 export class PostModule {}

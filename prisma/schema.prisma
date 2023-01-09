@@ -25,7 +25,7 @@ model Post {
   description String?
   authorId    Int
   videoUrl    String?
-  key         String
+  key         String     @unique
   status      PostStatus @default(DRAFT)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt

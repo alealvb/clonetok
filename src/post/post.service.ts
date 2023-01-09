@@ -3,7 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import crypto from 'crypto';
-import { Post } from '@prisma/client';
+import { Post, Prisma } from '@prisma/client';
 import { S3Service } from 'src/s3/s3.service';
 
 @Injectable()
@@ -40,11 +40,15 @@ export class PostService {
     return this.prisma.post.findUnique({ where: { id } });
   }
 
-  update(id: number, updatePostDto: UpdatePostDto) {
+  update(id: number, updatePostDto: Prisma.PostUpdateInput) {
     return this.prisma.post.update({ where: { id }, data: updatePostDto });
   }
 
   remove(id: number) {
     return `This action removes a #${id} post`;
+  }
+
+  findUnique(where: Prisma.PostWhereUniqueInput) {
+    return this.prisma.post.findUnique({ where });
   }
 }
