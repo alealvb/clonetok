@@ -5,6 +5,7 @@ import { S3 } from 'aws-sdk';
 import { AwsSdkModule } from 'nest-aws-sdk';
 import { AuthModule } from 'src/auth/auth.module';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { AwsVideoWebhookModule } from 'src/aws-video-webhook/aws-video-webhook.module';
 import { PostModule } from 'src/post/post.module';
 import { S3Module } from 'src/s3/s3.module';
 import { UsersModule } from 'src/users/users.module';
@@ -14,6 +15,7 @@ import { UsersModule } from 'src/users/users.module';
     AuthModule,
     UsersModule,
     PostModule,
+    AwsVideoWebhookModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
