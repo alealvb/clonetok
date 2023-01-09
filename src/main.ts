@@ -3,9 +3,12 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { patchNestjsSwagger } from '@anatine/zod-nestjs';
 import { AppModule } from './app/app.module';
 import { ConfigService } from '@nestjs/config';
+import { text } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(text());
 
   const docsConfig = new DocumentBuilder()
     .setTitle('CloneTok')
